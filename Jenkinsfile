@@ -1,5 +1,10 @@
 pipeline {
-    agent any
+    agent {
+        docker {
+            image 'maven:3.9.3-eclipse-temurin-17'
+            args '-v $HOME/.m2:/root/.m2' // cache dependencies
+        }
+    }
 
     environment {
         DOCKERHUB_REPO = 'auoram/hello-spring'
